@@ -10,7 +10,7 @@ const host = app.listen(PORT, ()=>{
 const io = new Server(host, {
  pingTimeout: 60000,
  cors: {
- origin: "http://localhost:3000"
+ origin: "https://iiuc-alumni.onrender.com"
 },
 })
 
