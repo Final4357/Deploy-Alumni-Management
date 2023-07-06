@@ -24,7 +24,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       "default-src": ["'self'"],
-      "script-src": ["'self'", "'unsafe-inline'", "js.stripe.com"],
+      "script-src": ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"],
       "style-src": ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
       "frame-src": ["'self'"],
       "font-src": [
