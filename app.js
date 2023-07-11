@@ -7,7 +7,6 @@ import helmet from'helmet'
 import mongoSanitize from'express-mongo-sanitize'
 import xss from'xss-clean'
 import hpp from'hpp'
-import path from 'path'
 
 import authRouter from './routes/auth.js'
 import alumniRouter from './routes/alumni.js'
@@ -20,24 +19,7 @@ const app = express()
 dotenv.config()
 
 app.use(cors())
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      "default-src": ["'self'"],
-      "script-src": ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"],
-      "style-src": ["'self'", "'unsafe-inline'", "fonts.googleapis.com"],
-      "frame-src": ["'self'"],
-      "font-src": [
-        "'self'",
-        "fonts.googleapis.com",
-        "fonts.gstatic.com",
-        "res.cloudinary.com/",
-      ],
-      "img-src": ["'self'", "data:", "https://res.cloudinary.com", "https://i.ibb.co"],
-    },
-    reportOnly: true,
-  })
-);
+app.use(helmet())
 app.use(mongoSanitize())
 app.use(xss())
 app.use(hpp())
@@ -64,13 +46,5 @@ app.use((err, req, res, next)=>{
       stack : err.stack,
     });
   });
-
-//static file
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, './client/build')))
-
-app.get("*", (req, res)=>{
-  res.sendFile(path.resolve(__dirname, './client/build/index.html'))
-})
 
 export default app
