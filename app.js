@@ -15,6 +15,7 @@ import chatRouter from './routes/chat.js'
 import messageRouter from './routes/message.js'
 import jobRouter from './routes/job.js'
 import eventRouter from './routes/event.js'
+import newsRouter from './routes/news.js'
 
 const app = express()
 dotenv.config()
@@ -53,6 +54,7 @@ app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/job', jobRouter);
 app.use('/api/event', eventRouter);
+app.use('/api/news', newsRouter);
 
 app.use((err, req, res, next)=>{
     const errorStatus = err.status || 500
