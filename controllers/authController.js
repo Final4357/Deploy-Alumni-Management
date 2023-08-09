@@ -13,7 +13,7 @@ export const alumniRegister = async (req, res, next) => {
     try {
         if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.password || !req.body.studentId ||
             !req.body.dept || !req.body.batch || !req.body.position || !req.body.company || !req.body.gender ||
-            !req.body.degree || !req.body.phone || !req.body.address || !req.file )
+            !req.body.degree || !req.body.phone || !req.body.address || !req.file)
             return next(createError(401, "Please fill the all requried fields."));
         else if (IsEmail(req.body.email))
             return next(createError(401, "Invalid email address."));
@@ -42,7 +42,6 @@ export const alumniRegister = async (req, res, next) => {
 }
 
 export const studentRegister = async (req, res, next) => {
-	console.log(req.file)
     try {
         if (!req.body.firstname || !req.body.lastname || !req.body.email || !req.body.password || !req.body.studentId)
             return next(createError(401, "Please fill the all requried fields."));
@@ -106,7 +105,7 @@ export const updateProfile = async (req, res, next) => {
         );
         if (!user) return next(createError(404, "User not found."));
         if(req.file){
-            await cloudinaryDeleteImg(user.photo.publicId)
+            if(user.photo.publicId) await cloudinaryDeleteImg(user.photo.publicId)
             req.body.photo = await productImageUpload(req.file, `Alumni-Management/Users`)
         }
         const updateProfile = await User.findByIdAndUpdate(

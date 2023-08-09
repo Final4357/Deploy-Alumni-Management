@@ -24,8 +24,8 @@ const UserSchema = new mongoose.Schema({
         require: true
     },
     photo:{
-           url: String,
-           publicId: String
+            url: String,
+            publicId: String
     },
     isAlumni:{
         type: Boolean,

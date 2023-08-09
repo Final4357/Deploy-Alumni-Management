@@ -10,7 +10,7 @@ import hpp from'hpp'
 import path from 'path'
 
 import authRouter from './routes/auth.js'
-import alumniRouter from './routes/alumni.js'
+import userRouter from './routes/user.js'
 import chatRouter from './routes/chat.js'
 import messageRouter from './routes/message.js'
 import jobRouter from './routes/job.js'
@@ -49,7 +49,7 @@ app.use(cookieParser())
 app.use(express.json({ limit: '50mb' }))
 
 app.use('/api/auth', authRouter);
-app.use('/api/alumni', alumniRouter);
+app.use('/api/user', userRouter);
 app.use('/api/chat', chatRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/job', jobRouter);
